@@ -26,12 +26,16 @@
     window.onload = function() {
       let canvas = document.getElementById('c1');
       let brush = canvas.getContext('2d');
+      let rotate = 0;
       brush.strokeRect(100, 100, 300, 200);
-      brush.translate(250, 200);
-      brush.rotate(d2a(40));
-      brush.fillStyle = 'rgba(255, 0, 0, 0.3)';
-      brush.fillRect(0, 0, canvas.width, canvas.height);
-      brush.strokeRect(-150, -100, 300, 200);
+      setInterval(
+        function() {
+          rotate++;
+          brush.translate(250, 200);
+          brush.rotate(d2a(rotate));
+          brush.strokeRect(-150, -100, 300, 200);
+        }, 16
+      );
     };
   </script>
 </head>
