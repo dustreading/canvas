@@ -28,14 +28,15 @@
       let brush = canvas.getContext('2d');
       let rotate = 0;
       brush.strokeRect(100, 100, 300, 200);
-      setInterval(
-        function() {
-          rotate++;
-          brush.translate(250, 200);
-          brush.rotate(d2a(rotate));
-          brush.strokeRect(-150, -100, 300, 200);
-        }, 16
-      );
+      setInterval(function() {
+        brush.clearRect(0, 0, canvas.width, canvas.height);
+        rotate++;
+        brush.save();
+        brush.translate(250, 200);
+        brush.rotate(d2a(rotate));
+        brush.strokeRect(-150, -100, 300, 200);
+        brush.restore();
+      }, 16);
     };
   </script>
 </head>
