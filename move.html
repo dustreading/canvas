@@ -25,11 +25,14 @@
         h = 70;
       //#1矩形
       brush.strokeRect(x, y, w, h);
-      canvas.onclick = function(ev) {
+      canvas.onmousemove = function(ev) {
+        brush.clearRect(0, 0, canvas.width, canvas.height);
         if (ev.offsetX >= x && ev.offsetX <= x + w && ev.offsetY >= y && ev.offsetY <= y + h) {
-          alert('在');
+          brush.strokeStyle = 'red';
+          brush.strokeRect(x, y, w, h);
         } else {
-          alert('没在');
+          brush.strokeStyle = 'black';
+          brush.strokeRect(x, y, w, h);
         }
       };
       //#2圆形
