@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-      body {
-        background: black;
-        text-align: center;
-      }
 
-      #c1 {
-        background: white;
-      }
-    </style>
-    <script>
-      window.onload = function() {
-        let oCanvas = document.getElementById('c1');
-        let brush = oCanvas.getContext('2d');
-        let oImage = new Image();
-        oImage.src = 'rpg.jpg';
-        oImage.onload = function() {
-          brush.drawImage(oImage, 308, 473, 80, 98, 100, 100, 80, 98);
-        };
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    body {
+      background: black;
+      text-align: center;
+    }
+
+    #c1 {
+      background-image: url(./backgroud.png);
+      background-repeat: repeat;
+      background-attachment: scroll;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      let oCanvas = document.getElementById('c1');
+      let brush = oCanvas.getContext('2d');
+      let oImage = new Image();
+      oImage.src = 'rpg.jpg';
+      oImage.onload = function() {
+        let frame = 0;
+        setInterval(function() {
+          brush.clearRect(0, 0, oCanvas.width, oCanvas.height);
+          brush.drawImage(oImage, 97 + (frame * 32), 0, 32, 33, 100, 100, 74, 98);
+          frame++;
+          if (frame == 3) {
+            frame = 0;
+          }
+        }, 100);
       };
-    </script>
-  </head>
-  <body>
-    <canvas id="c1" width="800" height="600"></canvas>
-  </body>
+    };
+  </script>
+</head>
+
+<body>
+  <canvas id="c1" width="800" height="600"></canvas>
+</body>
+
 </html>
