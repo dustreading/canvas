@@ -19,19 +19,18 @@
       let oCanvas = document.getElementById('c1');
       let brush = oCanvas.getContext('2d');
       let oImage = new Image();
-      oImage.src = 'universe.jpg';
+      oImage.src = 'timg.jpg';
       oImage.onload = function() {
         brush.drawImage(oImage, 0, 0);
         let imageData = brush.getImageData(0, 0, oCanvas.width, oCanvas.height);
-
-        alert(
-          `
-          r: ${imageData.data[(599 * 800 + 0) * 4]}\n
-          g: ${imageData.data[(599 * 800 + 0) * 4]}\n
-          b: ${imageData.data[(599 * 800 + 0) * 4]}\n
-          a: ${imageData.data[(599 * 800 + 0) * 4]}\n
-          `
-        );
+        console.log(imageData.data);
+        for(r=0; r<oCanvas.height; r++){
+          for(c=0; c<oCanvas.width; c++){
+            let avg = (imageData.data[(r*oCanvas.width + c)*4] + imageData.data[(r*oCanvas.width + c)*4 + 1] + imageData.data[(r*oCanvas.width + c)*4 + 2]) /3;
+            imageData.data[(r*oCanvas.width + c)*4] = imageData.data[(r*oCanvas.width + c)*4 + 1] = imageData.data[(r*oCanvas.width + c)*4 + 2] = avg;
+          }
+        }
+        brush.putImageData(imageData, 0, 0);
       };
     };
   </script>
