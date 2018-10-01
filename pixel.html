@@ -22,6 +22,16 @@
       oImage.src = 'universe.jpg';
       oImage.onload = function() {
         brush.drawImage(oImage, 0, 0);
+        let imageData = brush.getImageData(0, 0, oCanvas.width, oCanvas.height);
+
+        alert(
+          `
+          r: ${imageData.data[(599 * 800 + 0) * 4]}\n
+          g: ${imageData.data[(599 * 800 + 0) * 4]}\n
+          b: ${imageData.data[(599 * 800 + 0) * 4]}\n
+          a: ${imageData.data[(599 * 800 + 0) * 4]}\n
+          `
+        );
       };
     };
   </script>
